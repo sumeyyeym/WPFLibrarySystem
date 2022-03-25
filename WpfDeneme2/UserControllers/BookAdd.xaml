@@ -1,0 +1,204 @@
+﻿<Window x:Class="WpfDeneme2.UserControllers.BookAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDeneme2.UserControllers"
+        mc:Ignorable="d"
+        Title="BookAdd" 
+        Height="430" 
+        Width="900" 
+        Background="{x:Null}" 
+        AllowsTransparency="True" 
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Canvas>
+            <Border Height="330" 
+                    Width="568" 
+                    Canvas.Left="176" 
+                    Canvas.Top="50" 
+                    CornerRadius="0,0,50,50"
+                    Background="#E5DECF">
+                <Border.Effect>
+                    <DropShadowEffect Direction="270"/>
+                </Border.Effect>
+            </Border>
+
+            <Rectangle Height="35" 
+                       Width="568" 
+                       Canvas.Left="176" 
+                       Canvas.Top="50"
+                       Fill="#9FC0C4"/>
+
+            <Ellipse Height="90" 
+                     Width="90" 
+                     Fill="#77A9B0" 
+                     Canvas.Left="150" 
+                     Canvas.Top="25" 
+                     StrokeThickness="3"
+                     Style="{DynamicResource effectRotate}">
+                <Ellipse.RenderTransform>
+                    <RotateTransform/>
+                </Ellipse.RenderTransform>
+                <Ellipse.Stroke>
+                    <LinearGradientBrush EndPoint="0.5,1" 
+                                         StartPoint="0.5,0">
+                        <GradientStop Color="#FF77A9B0" Offset="0"/>
+                        <GradientStop Color="#FFCCA990" Offset="1"/>
+                        <GradientStop Color="White" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Ellipse.Stroke>
+            </Ellipse>
+
+            <Image Source="/WpfDeneme2;component/images/icons/bookshelf.png"
+                   Height="52" Width="52" 
+                   Canvas.Left="168" Canvas.Top="44"
+                   x:Name="imgBookAdd"
+                   MouseDown="imgBookAdd_MouseDown"
+                   ToolTip="Ekle"/>
+
+            <Label Content="KİTAP EKLE" 
+                   FontSize="16"
+                   HorizontalAlignment="Center"
+                   Canvas.Left="244" Canvas.Top="50" 
+                   Height="35"
+                   Style="{DynamicResource textStyleWhite}"/>
+
+
+
+            <!--Textbox ve labeller-->
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Kitap Adı"
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="137"/>
+            <TextBox x:Name="tbxBookName"
+                     Width="100" Height="22"
+                     Canvas.Left="296" Canvas.Top="140"
+                     Style="{DynamicResource textboxStyle}"/>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Yazarı" 
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="169"/>
+            <ComboBox x:Name="cbxAuthorName"
+                      Width="100" 
+                      Canvas.Left="296" Canvas.Top="171"
+                      Style="{DynamicResource ComboBoxFlatStyle}"
+                      BorderThickness="0,0,0,1">
+            </ComboBox>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Yayın Evi" 
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="201"
+                   />
+            <ComboBox x:Name="cbxPublisher" 
+                      Width="100" 
+                      Canvas.Left="296" Canvas.Top="203"
+                      Style="{DynamicResource ComboBoxFlatStyle}"
+                      BorderThickness="0,0,0,1">
+            </ComboBox>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Baskı Tarihi" 
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="233"/>
+            <DatePicker x:Name="dpDate" 
+                        Width="100" 
+                        Canvas.Left="296" Canvas.Top="235" 
+                        RenderTransformOrigin="2.307,3.111" 
+                        BorderBrush="#D2BCA2" 
+                        BorderThickness="0,0,0,1"/>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Kitap Türü"
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="265"/>
+            <TextBox x:Name="tbxBookType" 
+                     Width="100" Height="22"
+                     Canvas.Left="296" Canvas.Top="268"
+                     Style="{DynamicResource textboxStyle}"/>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Sayfa Sayısı"
+                   FontSize="14"
+                   Canvas.Left="226" Canvas.Top="297"/>
+            <TextBox x:Name="tbxPageCount"
+                     Width="100" Height="22"
+                     Canvas.Left="296" Canvas.Top="300"
+                     Style="{DynamicResource textboxStyle}"
+                     PreviewTextInput="tbxPageCount_PreviewTextInput"/>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Konusu"
+                   FontSize="14"
+                   Canvas.Left="406" Canvas.Top="137"
+                   />
+            <TextBox x:Name="tbxSummary" 
+                     Width="170" Height="151"
+                     Canvas.Left="406" Canvas.Top="171"
+                     Style="{DynamicResource textboxStyle}"
+                     TextWrapping="Wrap"/>
+
+            <Label Style="{DynamicResource textStyleBlack}"
+                   Content="Resim ekle"
+                   FontSize="14"
+                   Canvas.Left="588" Canvas.Top="137"/>
+
+            <Image x:Name="imgImage"
+                   Height="151" Width="102" 
+                   Canvas.Top="171" Canvas.Left="588" Source="/WpfDeneme2;component/images/icons/imageadd.png">
+                <Image.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.5" Direction="260"/>
+                </Image.Effect>
+            </Image>
+
+            <Button Style="{DynamicResource circleButtonImageAdd}" 
+                    Canvas.Left="660" Canvas.Top="290" 
+                    x:Name="btnAddImage"
+                    Click="btnAddImage_Click"/>
+            <Button Style="{DynamicResource circleButtonClose}" 
+                    Canvas.Left="709" Canvas.Top="50"
+                    x:Name="btnClose"
+                    Click="btnClose_Click"/>
+            <Button Style="{DynamicResource circleButtonInfo}" 
+                    Canvas.Left="674" Canvas.Top="50"
+                    x:Name="btnInfo"
+                    Click="btnInfo_Click"/>
+
+            <Grid Height="10" Width="10" Canvas.Left="691" Canvas.Top="67">
+                <Popup x:Name="popupInfo"
+                       AllowsTransparency="True"
+                       PopupAnimation="Scroll"
+                       Placement="Left"
+                       Height="166" 
+                       Width="300"
+                       Margin="10,0,-300,-200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Border Background="#E4E6E5"
+                            Width="284"
+                            Height="150"
+                            CornerRadius="20,0,30,50">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.5" Direction="260"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <TextBlock Text="BİLGİLENDİRME"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,10,0,0"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       FontFamily="Barlow Condensed SemiBold"/>
+                            <TextBlock TextWrapping="Wrap" Text="Kitap ekleme panelindesiniz. Kütüphanenize eklemek istediğiniz kitapların istenilen bilgilerini ilgili alanlardan doldurbilirsiniz."
+                                       HorizontalAlignment="Center"
+                                       Margin="10,5,10,0"
+                                       FontSize="13"
+                                       FontFamily="Barlow Condensed" Height="86" Width="264"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+
+        </Canvas>
+    </Grid>
+</Window>

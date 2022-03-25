@@ -1,0 +1,332 @@
+﻿<Window x:Class="WpfDeneme2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDeneme2"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600" Width="900" 
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        Background="{x:Null}"
+        Loaded="Window_Loaded" 
+        Icon="images/icons/book.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <!--Uygulama açıldığında görev çubuğunda görünümü-->
+
+    <Grid Margin="5" x:Name="grdMainGrid">
+        <Grid.Effect>
+            <DropShadowEffect Opacity="0.6"/>
+        </Grid.Effect>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="430" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" x:Name="grdMainGridColumn0"/>
+            <ColumnDefinition x:Name="grdMainGridColumn1" Width="690"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Logo ve Buton-->
+        <Border Background="#77A9B0" x:Name="brdSolUst" MouseDown="brdSolUst_MouseDown">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border>
+                    <DockPanel HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        <Image Source="images/icons/book.png"
+                               Margin="3"/>
+                        <Label Content="KÜTÜPHANEM"
+                               x:Name="lblLibrary"
+                               HorizontalAlignment="Left"
+                               FontSize="18"
+                               Width="100"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Row="1">
+                    <DockPanel HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        <!--Basit Kullanım:
+                        
+                        <Image Source="images/icons/library.png"
+                               Height="70"
+                               Width="70"/>-->
+
+                        <Image x:Name="imgAdd">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="images/icons/library_beyaz.png"/>
+                                    <Setter Property="Height" Value="90"/>
+                                    <Setter Property="Width" Value="90"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="images/icons/library.png"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+
+        <!--Header ve Mini Butonlar-->
+        <Border Background="#77A9B0" Grid.Row="0" Grid.Column="1" x:Name="brdSagUst" MouseDown="brdSagUst_MouseDown">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border>
+                    <StackPanel Width="690" 
+                                Orientation="Horizontal">
+
+                        <Button x:Name="btnHamburger"
+                                Click="btnHamburger_Click"
+                                Content="|||"
+                                Margin="0,0,570,0" 
+                                HorizontalContentAlignment="Left"
+                                Style="{DynamicResource miniButonlar}"/>
+
+                        <DockPanel Width="90" HorizontalAlignment="Right">
+                            <Button x:Name="btnMin"
+                                Click="btnMin_Click"
+                                Content="_"
+                               Style="{DynamicResource miniButonlar}"/>
+
+                            <Button x:Name="btnMax"
+                                Click="btnMax_Click"
+                                Content="[]"
+                                Style="{DynamicResource miniButonlar}"/>
+                            <Button x:Name="btnClose" 
+                                Click="btnClose_Click"
+                                Content="X"
+                                Style="{DynamicResource miniButonlar}"/>
+                        </DockPanel>
+
+                    </StackPanel>
+
+                </Border>
+
+                <Border Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border>
+                            <StackPanel VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="250">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Border>
+                                        <Label Foreground="White"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               FontFamily="Barlow Condensed">
+                                            Toplam kitap sayısı:
+                                        </Label>
+                                    </Border>
+                                    <Border Grid.Row="1">
+                                        <!-- burada dockpanel yerine StackPanel Orientation="Horizontal" şeklinde de yazılabilirdi-->
+                                        <StackPanel>
+                                            <DockPanel>
+                                                <Label Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       FontFamily="Barlow Condensed"
+                                                       Width="125">
+                                                    Okunanlar:
+                                                </Label>
+                                                <Label Width="125"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="Barlow Condensed"
+                                                       FontSize="14">
+                                                    Okunacaklar:
+                                                </Label>
+                                            </DockPanel>
+                                            <DockPanel>
+                                                <Label Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       FontFamily="Barlow Condensed"
+                                                       Width="125">
+                                                    Emanet Sayısı:
+                                                </Label>
+                                                <Label Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       FontFamily="Barlow Condensed"
+                                                       Width="125">
+                                                    Süresi dolan:
+                                                </Label>
+                                            </DockPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Width="300"
+                                        Margin="0,0,15,0">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Label Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalContentAlignment="Right"
+                                           FontSize="14"
+                                           FontFamily="Barlow Condensed"
+                                           Width="175">
+                                        Sümeyye Kaya
+                                    </Label>
+                                    <Label Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalContentAlignment="Right"
+                                           FontSize="14"
+                                           FontFamily="Barlow Condensed"
+                                           Width="175">
+                                        Profil Ayarları
+                                    </Label>
+                                </StackPanel>
+                                <Image Source="images/icons/owl.png"
+                                       Width="125"
+                                       Height="125" Margin="0,2"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!--MENÜ-->
+        <Border Background="#77A9B0" Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <ToggleButton x:Name="btnBookList" 
+                              Click="btnBookList_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/bookshelf.png" Width="35"/>
+                        <Label x:Name="lblBookList" 
+                               Content="Kitaplarım" 
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <ToggleButton x:Name="btnAuthors" 
+                              Click="btnAuthors_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/writing.png" Width="35"/>
+                        <Label Content="Yazarlar" 
+                               x:Name="lblAuthors"
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <ToggleButton x:Name="btnReaded" 
+                              Click="btnReaded_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/reading-book.png" Width="35"/>
+                        <Label Content="Okuduklarım" 
+                               x:Name="lblReaded"
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <ToggleButton x:Name="btnGonnaRead"
+                              Click="btnGonnaRead_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/book (1).png" Width="35"/>
+                        <Label Content="Okunacaklar" 
+                               x:Name="lblGonnaRead"
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <ToggleButton x:Name="btnDepositList" 
+                              Click="btnDepositList_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/giving.png" Width="35"/>
+                        <Label Content="Emanet Listesi" 
+                               x:Name="lblDepositList"
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <ToggleButton x:Name="btnSettings" 
+                              Click="btnSettings_Click"
+                              Height="60" 
+                              Style="{DynamicResource menuButonlari}">
+                    <DockPanel Width="150" Margin="15,0,0,0">
+                        <Image Source="images/icons/gear.png" Width="35"/>
+                        <Label Content="Ayarlar" 
+                               x:Name="lblSettings"
+                               FontSize="16"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource textStyleWhite}"/>
+                    </DockPanel>
+                </ToggleButton>
+
+                <Label x:Name="lblDataBase"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Height="25"
+                       Content="Veri tabanı bağlantısı"
+                       Style="{DynamicResource textStyleWhite}"
+                       Margin="0,35,0,0"/>
+
+            </StackPanel>
+        </Border>
+
+
+        <!--İÇERİK-->
+        <Border Background="#FFFFFBF4" Grid.Row="1" Grid.Column="1">
+            <Grid x:Name="contentWindow">
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
